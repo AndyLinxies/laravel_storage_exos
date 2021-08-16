@@ -1,5 +1,7 @@
 <?php
 
+use App\Http\Controllers\FichierController;
+use App\Models\Fichier;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -16,3 +18,12 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () {
     return view('welcome');
 });
+Route::get('/admin', function () {
+    $images=Fichier::all();
+    return view('pages.admin',compact('images'));
+});
+// Route::get('/fichier', function () {
+//     return view('pages.fichier');
+// });
+Route::resource('/fichier', FichierController::class);
+
